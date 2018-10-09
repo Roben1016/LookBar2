@@ -14,3 +14,18 @@
 在gradle.properties文件中，设置isModule=true时，可单独编译3、 4、 5、 6四个独立模块；  
 设置isModule=false时,可编译运行app模块。
 
+### 应用截图
+#### 1. app运行截图：  
+![image](https://github.com/Roben1016/LookBar2/raw/master/screenshot/module_app.png) 
+
+#### 2. main组件独立运行截图：  
+![image](https://github.com/Roben1016/LookBar2/raw/master/screenshot/module_main.png)
+
+#### 3. 电影组件独立运行截图：  
+![image](https://github.com/Roben1016/LookBar2/raw/master/screenshot/module_movie.png)  
+
+#### 4. 书籍组件独立运行截图：  
+![image](https://github.com/Roben1016/LookBar2/raw/master/screenshot/module_book.png)  
+
+#### 5. 音乐组件独立运行截图：  
+![image](https://github.com/Roben1016/LookBar2/raw/master/screenshot/module_music.png)  
