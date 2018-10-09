@@ -1,0 +1,12 @@
+<resources>
+    <string name="res_app_name">commonres</string>
+    <string name="res_roshine">罗帅</string>
+    <string name="res_like">如果觉得别人比你聪明，那你唯一能做的就是比 ta 更努力。</string>
+    <string name="res_author_desc">我叫罗帅，一个集帅气和智慧于一身的男子，为人低调奢华有内涵。同时是个安卓小开发仔，热爱编程事业，求知欲望强烈，所以，如果有仁兄喜欢这个项目的话可以和我联系，一起交流一起进步！</string>
+    <string name="res_email">邮箱：luoshuai_ls@163.com </string>
+    <string name="res_github">github：https://github.com/Roben1016 </string>
+    <string name="res_blog">博客：http://www.roshine.xyz </string>
+    <string name="res_contact_me">联系我：</string>
+    <string name="res_author_introduction_text">作者简介</string>
+    <string name="get_more_text">点击查看更多信息</string>
+</resources>

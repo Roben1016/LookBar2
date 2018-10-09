@@ -1,0 +1,16 @@
+<resources>
+    <string name="music_app_name">音乐组件</string>
+    <string name="music_text">音乐</string>
+    <string name="music_transition_name_author">author</string>
+    <string name="music_transition_name_genres">genres</string>
+    <string name="music_transition_name_card">cardview</string>
+    <string name="music_transition_name_image">image</string>
+    <string name="music_transition_name_text">name</string>
+    <string name="music_transition_name_score">score</string>
+    <string name="music_score_text_v2">评分：%1$s</string>
+    <string name="music_brief_introduction_text">简介</string>
+    <string name="music_other_music_list">同专辑所有歌曲</string>
+    <string name="music_score_text">评分: %1$s</string>
+    <string name="music_real_name_text">%1$s [原名]</string>
+    <string name="music_catalog_null">暂无其它歌曲</string>
+</resources>

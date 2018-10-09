@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="music_tab">
+        <item>华语</item>
+        <item>流行</item>
+        <item>摇滚</item>
+        <item>经典</item>
+        <item>欧美</item>
+        <item>韩系</item>
+    </string-array>
+</resources>

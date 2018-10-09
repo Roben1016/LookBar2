@@ -1,0 +1,22 @@
+<resources>
+    <string name="book_app_name">书籍组件</string>
+    <string name="book_text">书籍</string>
+    <string name="book_transition_name_author">author</string>
+    <string name="book_transition_name_genres">genres</string>
+    <string name="book_transition_name_card">cardview</string>
+    <string name="book_transition_name_image">image</string>
+    <string name="book_transition_name_text">name</string>
+    <string name="book_transition_name_score">score</string>
+    <string name="book_score_text_v2">评分：%1$s</string>
+    <string name="book_catalog_text">书籍目录</string>
+    <string name="book_score_text">评分: %1$s</string>
+    <string name="book_publish_year">发行日期: %1$s</string>
+    <string name="book_catalog_null">暂无目录信息</string>
+    <string name="book_tag_uncontainer">其它标签</string>
+    <string name="book_introduction_text">书籍简介</string>
+    <string name="book_author_introduction_text">作者简介</string>
+    <string name="book_tag_set_introduce">单击增删标签，长按拖拽排序</string>
+    <string name="book_tag_container">已有标签</string>
+    <string name="book_save_tag_text">保存</string>
+    <string name="book_set_book_tag">设置书籍标签</string>
+</resources>

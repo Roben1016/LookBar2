@@ -1,0 +1,20 @@
+<resources>
+    <string name="movie_app_name">电影组件</string>
+    <string name="movie_text">电影</string>
+    <string name="movie_transition_name_author">author</string>
+    <string name="movie_transition_name_genres">genres</string>
+    <string name="movie_transition_name_card">cardview</string>
+    <string name="movie_transition_name_image">image</string>
+    <string name="movie_transition_name_text">name</string>
+    <string name="movie_transition_name_score">score</string>
+    <string name="movie_director_text">导演:</string>
+    <string name="movie_cast_text">主演:</string>
+    <string name="movie_score_text">评分:</string>
+    <string name="movie_rank_text">No.%1$d</string>
+    <string name="movie_director_text_v2">导演</string>
+    <string name="movie_real_name_text">%1$s [原名]</string>
+    <string name="movie_score_null">暂无评分</string>
+    <string name="movie_year_text">年份：%1$s</string>
+    <string name="movie_score_text_v2">评分：%1$s</string>
+    <string name="movie_case_text_v2">主演</string>
+</resources>

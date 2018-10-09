@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="common_colorPrimary">#3F51B5</color>
+    <color name="common_colorPrimaryDark">#303F9F</color>
+    <color name="common_colorAccent">#FF4081</color>
+    <color name="common_white">#ffffff</color>
+    <color name="common_black_alpha_80">#CC000000</color>
+    <color name="common_gray_light">#999999</color>
+    <color name="common_gray_lighter">#cccccc</color>
+    <color name="common_gray_lightset">#F3F3F3</color>
+    <color name="common_text_color_normal">#555555</color>
+    <color name="common_theme_green">#13b5b1</color>
+    <color name="common_theme_purple">#b54aa3</color>
+    <color name="common_theme_yellow">#ffff00</color>
+    <color name="common_red">#ff0000</color>
+    <color name="common_theme_brown">#795548</color>
+    <color name="common_black">#2b2b2b</color>
+    <color name="common_theme_pink">#ffc0cb</color>
+    <color name="common_theme_blue_light">#467b96</color>
+    <color name="common_theme_orange">#ff7f00</color>
+    <color name="common_theme_gray">#666666</color>
+    <color name="common_theme_green_light">#1ce376</color>
+    <color name="common_dark_white">#D7CDCD</color>
+    <color name="common_red_dark">#E55050</color>
+    <color name="common_book_tag_bg">#F5F5F5</color>
+    <color name="common_my_tag">#1E1E1E</color>
+    <color name="common_subscribe_seperate_line">#ffcdcdcd</color>
+    <color name="common_subscribe_item_drag_stroke">#ffd2d2d2</color>
+    <color name="common_subscribe_item_drag_bg">#fff5f5f5</color>
+    <color name="common_subscribe_item_selected_stroke">#ffcc3131</color>
+    <color name="common_subscribe_item_disabled_stroke">#ffd9d9d9</color>
+    <color name="common_subscribe_item_pressed_stroke">#ffcdcdcd</color>
+    <color name="common_subscribe_item_pressed_bg">#fff9f9f9</color>
+    <color name="common_subscribe_item_normal_stroke">#E8E8E8</color>
+    <color name="common_subscribe_item_text_color_pressed">#ffb9b9b9</color>
+    <item name="common_subscribe_item_text_color_normal" type="color">@color/common_default_text</item>
+    <color name="common_default_text">#505050</color>
+</resources>

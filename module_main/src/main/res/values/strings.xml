@@ -1,0 +1,13 @@
+<resources>
+    <string name="main_app_name">main组件</string>
+    <string name="main_item_menu_home">主页</string>
+    <string name="main_item_menu_recommend">推荐</string>
+    <string name="main_item_menu_theme">主题</string>
+    <string name="main_item_menu_feedback">反馈</string>
+    <string name="main_item_menu_setting">设置</string>
+    <string name="main_item_menu_about">关于</string>
+    <string name="main_cancle_text">取消</string>
+    <string name="main_sure_text">确定</string>
+    <string name="main_open">打开</string>
+    <string name="main_close">关闭</string>
+</resources>

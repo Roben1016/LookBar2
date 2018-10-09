@@ -1,0 +1,89 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="common_AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/common_colorPrimary</item>
+        <item name="colorPrimaryDark">@color/common_colorPrimaryDark</item>
+        <item name="colorAccent">@color/common_colorAccent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="windowActionBar">false</item>
+    </style>
+
+    <!-- 启动页填充屏幕样式 -->
+    <style name="common_Theme.AppStartLoadTranslucent" parent="common_AppTheme">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowBackground">@drawable/res_splash0</item>
+        <!--<item name="android:windowAnimationStyle">@style/AnimationNoneV2</item>-->
+    </style>
+
+    <!--support-v7dialog样式-->
+    <style name="common_AlertDialogThemeV7" parent="@style/Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:backgroundDimAmount">0</item>
+    </style>
+
+    <!-- CustomProgressDialog -->
+    <style name="common_CustomProgressDialog" parent="Theme.AppCompat.Light.Dialog">
+        <!-- Dialog的windowFrame框为无 -->
+        <item name="android:windowFrame">@null</item>
+        <!-- 是否浮现在activity之上 -->
+        <item name="android:windowIsFloating">true</item>
+        <!-- 是否半透明 -->
+        <item name="android:windowIsTranslucent">true</item>
+        <!-- 是否显示title -->
+        <item name="android:windowNoTitle">true</item>
+        <!-- 设置dialog的背景 -->
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!-- 用来控制灰度的值，当为1时，界面除了我们的dialog内容是高亮显示的，dialog以外的区域是黑色的，完全看不到其他内容，系统的默认值是0.5 -->
+        <item name="android:backgroundDimAmount">0.2</item>
+        <!-- 是否模糊 -->
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+
+    <style name="common_subscribe_my_tip_text">
+        <item name="android:textSize">14.0sp</item>
+        <item name="android:textColor">@color/common_my_tag</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="common_subscribe_seperate_line">
+        <item name="android:background">@color/common_subscribe_seperate_line</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">0dip</item>
+        <item name="android:layout_marginTop">10.0dip</item>
+        <item name="android:layout_marginBottom">10.0dip</item>
+    </style>
+
+    <style name="common_subscribe_more_tip_text" parent="@style/common_subscribe_my_tip_text">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="common_expandedTitle">
+        <item name="android:textColor">@color/common_white</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="common_ToolbarStyle" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="android:textColorPrimary">@color/common_white</item>
+        <item name="colorControlNormal">@color/common_white</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="common_CustomDialog" type="text/css">
+        <item name="android:windowEnterAnimation">@anim/common_anim_in</item>
+        <item name="android:windowExitAnimation">@anim/common_anim_out</item>
+    </style>
+</resources>
