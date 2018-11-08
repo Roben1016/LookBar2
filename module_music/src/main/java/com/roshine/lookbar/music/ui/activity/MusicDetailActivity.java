@@ -3,6 +3,7 @@ package com.roshine.lookbar.music.ui.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.Toolbar;
@@ -50,6 +51,7 @@ public class MusicDetailActivity extends MvpBaseActivity<MusicDetailContract.IMu
     NormalRecyclertView recyclerview;
     TextView tvCatalogNull;
     Button btnGetMore;
+    NestedScrollView scrollView;
     private MusicDetailPresenter presenter;
     private String id = "";
     private SimpleRecyclertViewAdater<String> mAdapter;
@@ -73,7 +75,13 @@ public class MusicDetailActivity extends MvpBaseActivity<MusicDetailContract.IMu
     }
 
     private void initData() {
+        showPageLoading();
         presenter.getMusicDetailById(id);
+    }
+    @Override
+    protected void onReload() {
+        super.onReload();
+        initData();
     }
 
     @Override
@@ -103,6 +111,7 @@ public class MusicDetailActivity extends MvpBaseActivity<MusicDetailContract.IMu
         recyclerview = findViewById(R.id.recyclerview);
         tvCatalogNull = findViewById(R.id.tv_catalog_null);
         btnGetMore = findViewById(R.id.btn_get_more);
+        scrollView = findViewById(R.id.scrollview);
 
         ivBack.setVisibility(View.VISIBLE);
         tvTitle.setVisibility(View.VISIBLE);
@@ -111,6 +120,7 @@ public class MusicDetailActivity extends MvpBaseActivity<MusicDetailContract.IMu
         btnGetMore.setOnClickListener(this);
         tbBaseToolBar.setBackgroundColor(getResources().getColor(ThemeColorUtil.getThemeColor()));
         btnGetMore.setBackgroundColor(getResources().getColor(ThemeColorUtil.getThemeColor()));
+        initPageLayout(scrollView);
         initRecyclerView();
     }
 
@@ -139,8 +149,11 @@ public class MusicDetailActivity extends MvpBaseActivity<MusicDetailContract.IMu
     @Override
     public void loadSuccess(Musics datas) {
         if (datas != null) {
+            hidePageLoading();
             currentData = datas;
             setDatas(datas);
+        } else {
+            showPageEmpty();
         }
     }
 
@@ -196,6 +209,7 @@ public class MusicDetailActivity extends MvpBaseActivity<MusicDetailContract.IMu
     @Override
     public void loadFail(String message) {
         toast(message);
+        showPageError();
     }
 
     @Override

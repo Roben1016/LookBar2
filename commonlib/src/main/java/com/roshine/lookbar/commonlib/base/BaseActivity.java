@@ -12,8 +12,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.Window;
 
+import com.hankkin.pagelayout_java.PageLayout;
 import com.roshine.lookbar.commonlib.utils.ActivityUtil;
 import com.roshine.lookbar.commonlib.utils.DisplayUtil;
+import com.roshine.lookbar.commonlib.utils.ThemeColorUtil;
 import com.roshine.lookbar.commonlib.utils.ToastUtil;
 import com.roshine.lookbar.commonlib.wight.NormalProgressDialog;
 import com.roshine.lookbar.commonlib.R;
@@ -35,6 +37,8 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
 //    private Unbinder unbinder;
     protected int screenWidth;
     protected int screenHeight;
+    protected PageLayout mPageLayout;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         if(Build.VERSION.SDK_INT >= 21){
@@ -53,6 +57,37 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
             }
         }
         initViewData(savedInstanceState);
+    }
+
+    protected void initPageLayout(Object targetView) {
+        if(Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP){
+            mPageLayout = new PageLayout.Builder(this)
+                    .initPage(targetView)
+                    .setLoadingProgressBarTink(getResources().getColorStateList(ThemeColorUtil.getNavigationViewItemColor()))
+//                .setLoadingProgressBarDrawable(getActivity().getResources().getDrawable(ThemeColorUtil.getThemeDrawable()))
+                    .setOnRetryListener(new PageLayout.OnRetryClickListener() {
+                        @Override
+                        public void onRetry() {
+                            onReload();
+                        }
+                    })
+                    .create();
+        } else {
+            mPageLayout = new PageLayout.Builder(this)
+                    .initPage(targetView)
+                    .setLoadingProgressBarDrawable(getResources().getDrawable(ThemeColorUtil.getThemeDrawable()))
+                    .setOnRetryListener(new PageLayout.OnRetryClickListener() {
+                        @Override
+                        public void onRetry() {
+                            onReload();
+                        }
+                    })
+                    .create();
+        }
+    }
+
+    protected void onReload() {
+
     }
 
     /**
@@ -85,6 +120,29 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
     @Override
     public void hideProgress() {
         NormalProgressDialog.stopLoading();
+    }
+
+    protected void showPageLoading(){
+        if (mPageLayout != null) {
+            mPageLayout.showLoading();
+        }
+    }
+
+    protected void hidePageLoading(){
+        if (mPageLayout != null) {
+            mPageLayout.hide();
+        }
+    }
+
+    protected void showPageEmpty(){
+        if (mPageLayout != null) {
+            mPageLayout.showEmpty();
+        }
+    }
+    protected void showPageError(){
+        if (mPageLayout != null) {
+            mPageLayout.showError();
+        }
     }
 
     @Override

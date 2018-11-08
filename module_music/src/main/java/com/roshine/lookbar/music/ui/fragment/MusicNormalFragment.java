@@ -73,6 +73,7 @@ public class MusicNormalFragment extends MvpBaseFragment<MusicNormalContract.IMu
     @Override
     protected void initViewData(View view,Bundle savedInstanceState) {
         swipRecyclerView = findViewById(R.id.swip_recycler_view);
+        initPageLayout(swipRecyclerView);
         swipRecyclerView.setColorSchemeColors(getActivity().getResources().getColor(ThemeColorUtil.getThemeColor()));
         swipRecyclerView.setLoadMoreProgressBarDrawbale(getActivity().getResources().getDrawable(ThemeColorUtil.getThemeDrawable()));
         swipRecyclerView.setOnRefreshListener(this);
@@ -99,10 +100,14 @@ public class MusicNormalFragment extends MvpBaseFragment<MusicNormalContract.IMu
         recyclertView.setAdapter(mAdapter);
         recyclertView.setOnItemClick(this);
     }
+    protected void onReload() {
+        loadNetData();
+    }
 
     @Override
     public void loadNetData() {
-        swipRecyclerView.setRefreshing(true);
+        showPageLoading();
+//        swipRecyclerView.setRefreshing(true);
         getMusicList(start,count);
     }
 
@@ -156,6 +161,11 @@ public class MusicNormalFragment extends MvpBaseFragment<MusicNormalContract.IMu
     public void loadSuccess(MusicBean datas) {
         swipRecyclerView.setRefreshing(false);
         if(datas != null && datas.getMusics()!= null ){
+            if(start == 0 && datas.getMusics().size() == 0){
+                showPageEmpty();
+            } else {
+                hidePageLoading();
+            }
             if(datas.getMusics().size() < count){
                 swipRecyclerView.setLoadMoreFinish(SwipeRecyclertView.LOAD_NO_MORE);
             }else{
@@ -169,12 +179,14 @@ public class MusicNormalFragment extends MvpBaseFragment<MusicNormalContract.IMu
                 mAdapter.notifyDataSetChanged();
             }
         }else{
+            hidePageLoading();
             swipRecyclerView.setLoadMoreFinish(SwipeRecyclertView.LOAD_NO_MORE);
         }
     }
 
     @Override
     public void loadFail(String message) {
+        showPageError();
         swipRecyclerView.setRefreshing(false);
         swipRecyclerView.setLoadMoreFinish(SwipeRecyclertView.LOAD_MORE_FAIL);
         toast(message);

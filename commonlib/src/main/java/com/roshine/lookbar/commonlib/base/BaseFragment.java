@@ -2,6 +2,7 @@ package com.roshine.lookbar.commonlib.base;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.annotation.Nullable;
@@ -13,7 +14,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 
+import com.hankkin.pagelayout_java.PageLayout;
 import com.roshine.lookbar.commonlib.utils.DisplayUtil;
+import com.roshine.lookbar.commonlib.utils.ThemeColorUtil;
 import com.roshine.lookbar.commonlib.utils.ToastUtil;
 import com.roshine.lookbar.commonlib.wight.NormalProgressDialog;
 
@@ -35,6 +38,7 @@ public abstract class BaseFragment extends Fragment implements BaseView {
     protected int screenWidth;
     protected int screenHeight;
     private View view;
+    protected PageLayout mPageLayout;
 
     @Nullable
     @Override
@@ -46,10 +50,40 @@ public abstract class BaseFragment extends Fragment implements BaseView {
                 EventBus.getDefault().register(this);
             }
             initViewData(view,savedInstanceState);
-
             return view;
         }
         return super.onCreateView(inflater, container, savedInstanceState);
+    }
+
+    protected void initPageLayout(Object targetView) {
+        if(Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP){
+            mPageLayout = new PageLayout.Builder(getActivity())
+                    .initPage(targetView)
+                    .setLoadingProgressBarTink(getResources().getColorStateList(ThemeColorUtil.getNavigationViewItemColor()))
+//                .setLoadingProgressBarDrawable(getActivity().getResources().getDrawable(ThemeColorUtil.getThemeDrawable()))
+                    .setOnRetryListener(new PageLayout.OnRetryClickListener() {
+                        @Override
+                        public void onRetry() {
+                            onReload();
+                        }
+                    })
+                    .create();
+        } else {
+            mPageLayout = new PageLayout.Builder(getActivity())
+                    .initPage(targetView)
+                    .setLoadingProgressBarDrawable(getActivity().getResources().getDrawable(ThemeColorUtil.getThemeDrawable()))
+                    .setOnRetryListener(new PageLayout.OnRetryClickListener() {
+                        @Override
+                        public void onRetry() {
+                            onReload();
+                        }
+                    })
+                    .create();
+        }
+    }
+
+    protected void onReload() {
+
     }
 
     /**
@@ -92,6 +126,29 @@ public abstract class BaseFragment extends Fragment implements BaseView {
     public void showProgress(String message, boolean cancelable) {
         if (getActivity() != null) {
             NormalProgressDialog.showLoading(getActivity(),message,cancelable);
+        }
+    }
+
+    protected void showPageLoading(){
+        if (mPageLayout != null) {
+            mPageLayout.showLoading();
+        }
+    }
+
+    protected void hidePageLoading(){
+        if (mPageLayout != null) {
+            mPageLayout.hide();
+        }
+    }
+
+    protected void showPageEmpty(){
+        if (mPageLayout != null) {
+            mPageLayout.showEmpty();
+        }
+    }
+    protected void showPageError(){
+        if (mPageLayout != null) {
+            mPageLayout.showError();
         }
     }
 

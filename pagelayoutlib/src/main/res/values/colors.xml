@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="page_colorPrimary">#ff662c</color>
+    <color name="page_colorPrimaryDark">#ff662c</color>
+    <color name="page_colorAccent">#ff662c</color>
+    <color name="page_blink_color">#b1b1b1</color>
+    <color name="page_shimmer_color">#a2878787</color>
+
+</resources>

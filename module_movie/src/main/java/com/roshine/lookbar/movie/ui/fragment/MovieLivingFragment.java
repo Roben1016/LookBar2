@@ -1,5 +1,6 @@
 package com.roshine.lookbar.movie.ui.fragment;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityOptionsCompat;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.hankkin.pagelayout_java.PageLayout;
 import com.roshine.lookbar.commonlib.base.MvpBaseFragment;
 import com.roshine.lookbar.commonlib.imageloader.ImageLoaderManager;
 import com.roshine.lookbar.commonlib.utils.DisplayUtil;
@@ -62,11 +64,16 @@ public class MovieLivingFragment extends MvpBaseFragment<MovieLivingContract.ILi
     @Override
     protected void initViewData(View view,Bundle savedInstanceState) {
         swipRecyclerView = findViewById(R.id.swip_recycler_view);
+        initPageLayout(swipRecyclerView);
         swipRecyclerView.setColorSchemeColors(getActivity().getResources().getColor(ThemeColorUtil.getThemeColor()));
         swipRecyclerView.setLoadMoreProgressBarDrawbale(getActivity().getResources().getDrawable(ThemeColorUtil.getThemeDrawable()));
         swipRecyclerView.setLoadMoreEnable(false);
         swipRecyclerView.setOnRefreshListener(this);
         initRecyclerView();
+    }
+
+    protected void onReload() {
+        loadNetData();
     }
 
     private void initRecyclerView() {
@@ -107,7 +114,8 @@ public class MovieLivingFragment extends MvpBaseFragment<MovieLivingContract.ILi
 
     @Override
     public void loadNetData() {
-        swipRecyclerView.setRefreshing(true);
+        showPageLoading();
+//        swipRecyclerView.setRefreshing(true);
         getListData();
     }
 
@@ -124,6 +132,11 @@ public class MovieLivingFragment extends MvpBaseFragment<MovieLivingContract.ILi
     public void loadSuccess(MovieBean datas) {
         swipRecyclerView.setRefreshing(false);
         if(datas != null && datas.getSubjects()!= null ){
+            if(datas.getSubjects().size() == 0){
+               showPageEmpty();
+            } else {
+                hidePageLoading();
+            }
             if(listData != null){
                 listData.clear();
             }
@@ -131,11 +144,14 @@ public class MovieLivingFragment extends MvpBaseFragment<MovieLivingContract.ILi
             if (mAdapter != null) {
                 mAdapter.notifyDataSetChanged();
             }
+        } else {
+            hidePageLoading();
         }
     }
 
     @Override
     public void loadFail(String message) {
+        showPageError();
         swipRecyclerView.setRefreshing(false);
         toast(message);
     }

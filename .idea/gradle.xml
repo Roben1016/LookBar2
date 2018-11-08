@@ -15,6 +15,7 @@
             <option value="$PROJECT_DIR$/module_main" />
             <option value="$PROJECT_DIR$/module_movie" />
             <option value="$PROJECT_DIR$/module_music" />
+            <option value="$PROJECT_DIR$/pagelayoutlib" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

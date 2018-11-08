@@ -1,0 +1,7 @@
+<resources>
+    <string name="page_app_name">EmptyPage</string>
+    <string name="page_error">网络开小差了</string>
+    <string name="page_error_retry">点击重试</string>
+    <string name="page_empty">暂无新数据</string>
+    <string name="page_logding">加载中...</string>
+</resources>

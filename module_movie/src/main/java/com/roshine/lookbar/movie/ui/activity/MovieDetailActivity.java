@@ -3,11 +3,13 @@ package com.roshine.lookbar.movie.ui.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.roshine.lookbar.commonlib.base.MvpBaseActivity;
@@ -56,7 +58,7 @@ public class MovieDetailActivity extends MvpBaseActivity<MovieDetailContract.IMo
     TextView tvIntroduce;
     NormalRecyclertView recyclerview;
     Button btnGetMore;
-
+    NestedScrollView scrollView;
 
     private MovieDetailBean currentData;
 
@@ -64,6 +66,7 @@ public class MovieDetailActivity extends MvpBaseActivity<MovieDetailContract.IMo
     private MovieDetailPresenter presenter;
     private List<MoviePeople> peoples = new ArrayList<>();
     private SimpleRecyclertViewAdater<MoviePeople> mAdapter;
+    private LinearLayout LLContent;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -72,7 +75,18 @@ public class MovieDetailActivity extends MvpBaseActivity<MovieDetailContract.IMo
         if(intent.hasExtra("id")){
             id = intent.getStringExtra("id");
         }
+        loadDatas();
+    }
+
+    private void loadDatas() {
+        showPageLoading();
         presenter.getMovieDetail(id);
+    }
+
+    @Override
+    protected void onReload() {
+        super.onReload();
+        loadDatas();
     }
 
     @Override
@@ -101,12 +115,15 @@ public class MovieDetailActivity extends MvpBaseActivity<MovieDetailContract.IMo
         tvIntroduce = findViewById(R.id.tv_introduce);
         recyclerview = findViewById(R.id.recyclerview);
         btnGetMore = findViewById(R.id.btn_get_more);
+        scrollView = findViewById(R.id.scrollview);
+        LLContent = findViewById(R.id.ll_content);
         ivBack.setOnClickListener(this);
         btnGetMore.setOnClickListener(this);
         ivBack.setVisibility(View.VISIBLE);
         tvTitle.setVisibility(View.VISIBLE);
         tbBaseToolBar.setBackgroundColor(getResources().getColor(ThemeColorUtil.getThemeColor()));
         btnGetMore.setBackgroundColor(getResources().getColor(ThemeColorUtil.getThemeColor()));
+        initPageLayout(scrollView);
         initRecyclerView();
     }
 
@@ -145,14 +162,18 @@ public class MovieDetailActivity extends MvpBaseActivity<MovieDetailContract.IMo
     @Override
     public void loadSuccess(MovieDetailBean datas) {
         if (datas != null) {
+            hidePageLoading();
             currentData = datas;
             setDatas(datas);
+        } else {
+            showPageEmpty();
         }
     }
 
     @Override
     public void loadFail(String message) {
         toast(message);
+        showPageError();
     }
 
     private void setDatas(MovieDetailBean datas) {

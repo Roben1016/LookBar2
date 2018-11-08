@@ -1,0 +1,16 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="page_AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/page_colorPrimary</item>
+        <item name="colorPrimaryDark">@color/page_colorPrimaryDark</item>
+        <item name="colorAccent">@color/page_colorAccent</item>
+    </style>
+
+    <declare-styleable name="page_BlinkLayout">
+        <attr name="page_blink_color" format="color|reference"/>
+        <attr name="page_blink_animation_duration" format="integer|reference"/>
+    </declare-styleable>
+
+</resources>

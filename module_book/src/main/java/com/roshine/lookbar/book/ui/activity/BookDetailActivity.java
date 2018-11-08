@@ -3,6 +3,7 @@ package com.roshine.lookbar.book.ui.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.Toolbar;
@@ -53,6 +54,7 @@ public class BookDetailActivity extends MvpBaseActivity<BookDetailContract.IBook
     Button btnGetMore;
     TextView tvBookAuthor;
     TextView tvCatalogNull;
+    NestedScrollView scrollView;
     private BookDetailPresenter presenter;
     private String id = "";
     private List<String> listData = new ArrayList<>();
@@ -66,8 +68,19 @@ public class BookDetailActivity extends MvpBaseActivity<BookDetailContract.IBook
         Intent intent = getIntent();
         if (intent.hasExtra("id")) {
             id = intent.getStringExtra("id");
-            presenter.getBookDetail(id);
+            loadDatas();
         }
+    }
+
+    private void loadDatas() {
+        showPageLoading();
+        presenter.getBookDetail(id);
+    }
+
+    @Override
+    protected void onReload() {
+        super.onReload();
+        loadDatas();
     }
 
     @Override
@@ -97,12 +110,14 @@ public class BookDetailActivity extends MvpBaseActivity<BookDetailContract.IBook
         btnGetMore = findViewById(R.id.btn_get_more);
         tvBookAuthor = findViewById(R.id.tv_book_author);
         tvCatalogNull = findViewById(R.id.tv_catalog_null);
+        scrollView = findViewById(R.id.scrollview);
         ivBack.setVisibility(View.VISIBLE);
         tvTitle.setVisibility(View.VISIBLE);
         ivBack.setOnClickListener(this);
         btnGetMore.setOnClickListener(this);
         tbBaseToolBar.setBackgroundColor(getResources().getColor(ThemeColorUtil.getThemeColor()));
         btnGetMore.setBackgroundColor(getResources().getColor(ThemeColorUtil.getThemeColor()));
+        initPageLayout(scrollView);
         initRecyclerView();
     }
 
@@ -131,8 +146,11 @@ public class BookDetailActivity extends MvpBaseActivity<BookDetailContract.IBook
     @Override
     public void loadSuccess(Books datas) {
         if (datas != null) {
+            hidePageLoading();
             currentData = datas;
             setDatas(datas);
+        } else {
+            showPageEmpty();
         }
 
     }
@@ -197,6 +215,7 @@ public class BookDetailActivity extends MvpBaseActivity<BookDetailContract.IBook
 
     @Override
     public void loadFail(String message) {
+        showPageError();
         toast(message);
     }
 

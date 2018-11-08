@@ -67,7 +67,7 @@ public class BookNormalFragment extends MvpBaseFragment<BookNormalContract.IBook
     @Override
     protected void initViewData(View view,Bundle savedInstanceState) {
         swipRecyclerView = findViewById(R.id.swip_recycler_view);
-
+        initPageLayout(swipRecyclerView);
         swipRecyclerView.setColorSchemeColors(getActivity().getResources().getColor(ThemeColorUtil.getThemeColor()));
         swipRecyclerView.setLoadMoreProgressBarDrawbale(getActivity().getResources().getDrawable(ThemeColorUtil.getThemeDrawable()));
         swipRecyclerView.setOnRefreshListener(this);
@@ -94,6 +94,9 @@ public class BookNormalFragment extends MvpBaseFragment<BookNormalContract.IBook
         recyclertView.setAdapter(mAdapter);
         recyclertView.setOnItemClick(this);
     }
+    protected void onReload() {
+        loadNetData();
+    }
 
     @Override
     public BookNormalPresenter getPresenter() {
@@ -113,7 +116,8 @@ public class BookNormalFragment extends MvpBaseFragment<BookNormalContract.IBook
 
     @Override
     public void loadNetData() {
-        swipRecyclerView.setRefreshing(true);
+        showPageLoading();
+//        swipRecyclerView.setRefreshing(true);
         getListData(start,count);
     }
 
@@ -149,6 +153,11 @@ public class BookNormalFragment extends MvpBaseFragment<BookNormalContract.IBook
     public void loadSuccess(BookBean datas) {
         swipRecyclerView.setRefreshing(false);
         if(datas != null && datas.getBooks()!= null ){
+            if(start == 0 && datas.getBooks().size() == 0){
+                showPageEmpty();
+            } else {
+                hidePageLoading();
+            }
             if(datas.getBooks().size() < count){
                 swipRecyclerView.setLoadMoreFinish(SwipeRecyclertView.LOAD_NO_MORE);
             }else{
@@ -162,12 +171,14 @@ public class BookNormalFragment extends MvpBaseFragment<BookNormalContract.IBook
                 mAdapter.notifyDataSetChanged();
             }
         }else{
+            hidePageLoading();
             swipRecyclerView.setLoadMoreFinish(SwipeRecyclertView.LOAD_NO_MORE);
         }
     }
 
     @Override
     public void loadFail(String message) {
+        showPageError();
         swipRecyclerView.setRefreshing(false);
         swipRecyclerView.setLoadMoreFinish(SwipeRecyclertView.LOAD_MORE_FAIL);
         toast(message);
