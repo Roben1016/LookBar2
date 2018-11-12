@@ -114,4 +114,6 @@ dependencies {
 
     //eventbus
     api rootProject.ext.dependencies["EventBus"]
+
+    api "com.jaeger.statusbarutil:library:1.5.1"
 }

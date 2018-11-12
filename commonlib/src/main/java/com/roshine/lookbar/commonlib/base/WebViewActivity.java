@@ -91,7 +91,7 @@ public class WebViewActivity extends BaseActivity implements View.OnClickListene
                                     title = view.getTitle();
                                 } catch (Exception e) {
                                     e.printStackTrace();
-                                    title = WebViewActivity.this.getResources().getString(R.string.app_name);
+                                    title = WebViewActivity.this.getResources().getString(R.string.common_app_name);
                                 }
                             }
                         }
