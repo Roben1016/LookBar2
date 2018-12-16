@@ -23,22 +23,42 @@ android {
             }
         }
     }
+
+//    signingConfigs {
+//        config {
+//            keyAlias 'lookbar'
+//            keyPassword '123456'
+//            storeFile file('C:/Users/Roshine/Desktop/Demo/LookBar2/lookbar_sign.jks')
+//            storePassword '123456'
+//        }
+//    }
+    signingConfigs {
+        release {
+            storeFile file(MYAPP_RELEASE_STORE_FILE)
+            storePassword MYAPP_RELEASE_STORE_PASSWORD
+            keyAlias MYAPP_RELEASE_KEY_ALIAS
+            keyPassword MYAPP_RELEASE_KEY_PASSWORD
+        }
+    }
+
     buildTypes {
         release {
             buildConfigField "boolean", "LOG_DEBUG", "false"
             minifyEnabled false
             debuggable false
+            signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
         debug {
             debuggable true
             buildConfigField "boolean", "LOG_DEBUG", "true"
+            signingConfig signingConfigs.release
         }
     }
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation rootProject.ext.dependencies["multidex"]
     implementation project(':commonlib')
     if (!isModule.toBoolean()) {
